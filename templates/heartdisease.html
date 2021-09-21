@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    {% if title %}
+        <title>Healthcare Blog - {{ title }}</title>
+    {% else %}
+        <title>Healthcare Blog</title>
+    {% endif %}
+</head>
+<body>
+    
+      <div class="bg-img">
+      <div class="centered" style="font-size: 60px"><b>Heart Disease</b></div>
+
+        <div class="container">
+          <div class="topnav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('heartdisease') }}">Heart Disease</a>
+            <a href="{{ url_for('liverdisease') }}">Liver Disease</a>
+            <a href="{{ url_for('breastcancer') }}">Breast Cancer</a> 
+            <a href="{{ url_for('malariadisease') }}">Malaria</a>
+            <a href="{{ url_for('pneumoniadisease') }}">Pneumonia</a>
+          </div>   
+          </div>
+      </div>
+    <div id="heartdiseasepage">
+        <h1>Heart Disease</h1>
+        A disease is an unnatural medical condition that negatively affects the functional state of an organism and is generally associated with certain signs of illness. As reported by World Health Organization (WHO), Heart Disease and Stroke are the world’s biggest killers and have remained the leading causes of death globally in the last 15 years. <br>In the direction of predicting heart disease, Machine Learning can present remarkable features that simplify the identification of unseen patterns, eventually providing clinical insights that assist physicians in planning and providing care. <p>
+        <p>The Heart Disease dataset has been taken from Kaggle. This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. It has a total number of 303 rows and 14 columns among which 165 have a heart disease.
+        <br>Data Source: <a href="https://www.kaggle.com/johnsmith88/heart-disease-dataset">Heart Disease Dataset</a>
+        <br><h5>Attribute Information:</h5>
+        age: age in years
+        <br>sex: (1 = male; 0 = female)
+        <br>cp: chest pain type
+        <br>trestbps: resting blood pressure (in mm Hg on admission to the hospital)
+        <br>chol: serum cholestoral in mg/dl
+        <br>fbs: (fasting blood sugar > 120 mg/dl) (1 = true; 0 = false)
+        <br>restecg: resting electrocardiographic results
+        <br>thalach: maximum heart rate achieved
+        <br>exang: exercise induced angina (1 = yes; 0 = no)
+        <br>oldpeak: ST depression induced by exercise relative to rest
+        <br>slope: the slope of the peak exercise ST segment
+        <br>ca: number of major vessels (0–4) colored by flourosopy
+        <br>thal: thalassemia (1 = normal; 2 = fixed defect; 3 = reversable defect)
+        <br>target: (1= heart disease or 0 = no heart disease)<p><br>
+        
+        <h6>Sample Input Values</h6>
+        <img style="max-width: 600px" src="/static/hrt.png"/ class="center">
+    </div><br>
+
+    <div style="color:black; text-align: center">
+        <form action="{{ url_for('heartdisease')}}" method="POST">
+            <h1>Heart Disease Predictor ML Application</h1><br>        
+            <label for="first"><strong>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="first" name="age" type="number" required="required"><br><br>
+
+            <label for="second"><strong>Gender (1 = male; 0 = female) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="second" name="sex" type="number" required="required"><br><br>
+
+            <label for="third"><strong>ChestPain (chest pain type-0,1,2,3) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="third" name="cp" type="number" required="required"><br><br>
+
+            <label for="fourth"><strong>Resting Blood Pressure (in mm Hg) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="fourth" name="trestbps" type="number" step="any" required="required"><br><br>
+
+            <label for="fifth"><strong>Resting Electrocardiographic Results(0 or 1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="fifth" name="restecg" type="number" required="required"><br><br>
+
+            <label for="sixth"><strong>MaxHeartRate (maximum heart rate achieved eg. 156, 173, 187,...) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="sixth" name="thalach" type="number" step="any" required="required"><br><br>
+
+            <label for="seventh"><strong>ExerciseInducedAngina (exercise induced angina (1 = yes; 0 = no)) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="seventh" name="exang" type="number" required="required"><br><br>
+
+            <label for="eighth"><strong>STdepression (ST depression induced by exercise relative to rest eg. 0.8, 1.4, 3.5,...) &nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input name="oldpeak" id="eighth" type="number" step="any" required="required"><br><br>
+
+            <label for="ninth"><strong>ExercisePeakSlope (the slope of the peak exercise ST segment 0, 1, 2) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="ninth" name="slope" type="number" required="required"><br><br>
+
+            <label for="tenth"><strong>MajorVesselsNo (number of major vessels (0-4) colored by flourosopy) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input id="tenth" name="ca"  type="number" required="required"><br><br>
+
+           <label for="eleventh"><strong>Thalassemia (1 = normal; 2 = fixed defect; 3 = reversable defect) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></label> <input name="thal" id="eleventh" type="number" required="required">
+            <br><br><button id="sub" type="submit ">Predict</button>
+        </form>
+        <br><h3>{{ prediction_text }}</h3>  
+    </div>   
+      
+    <style>
+
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+      .bg-img {
+          /* The image used */
+          background-image: url("/static/h.jpg");
+
+          min-height: 400px;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          /* Needed to position the navbar */
+          position: relative;
+        }
+
+        /* Position the navbar container inside the image */
+        .container {
+          position: absolute;
+          margin: 20px;
+          width: auto;
+        }
+
+        /* The navbar */
+        .topnav {
+          overflow: hidden;
+          background-color: #29AB87;
+        }
+
+        /* Navbar links */
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .centered {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+          }
+         
+        button {
+          background-color: #29AB87;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        .navbar{ 
+            background-color:#008081;
+        }
+        
+        #heartdiseasepage {
+          padding: 20px;
+          border-spacing: 15px;
+          text-align: justify;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        #first {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #second {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #third {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #fourth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #fifth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #sixth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #seventh {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #eighth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #ninth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #tenth {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        #eleventh {
+            border-radius: 0px;
+            height: 30px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
